@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 import constants.Constants;
 import utils.LetterValidations;
@@ -10,8 +9,7 @@ import utils.NearCoordinatesGenerator;
 public class Square {
 	
 	private Coord coord;
-	private List<Coord> nearbyCoords;
-	private List<Coord> availableNearbyCoords;
+	private Map<String, Coord> nearbyCoords;
 	
 	private String letter;
 	private boolean optionalLetter;
@@ -33,7 +31,6 @@ public class Square {
 	
 	private void setNearbyCoords(int x, int y) {
 		nearbyCoords = coordGenerator.generateCoords(x, y);
-		availableNearbyCoords = new ArrayList<>(nearbyCoords);
 	}
 	
 	private void setLetter(String letter) {
@@ -72,12 +69,8 @@ public class Square {
 		return coord;
 	}
 
-	public List<Coord> getNearbyCoords() {
+	public Map<String, Coord> getNearbyCoords() {
 		return nearbyCoords;
-	}
-
-	public List<Coord> getAvailableNearbyCoords() {
-		return availableNearbyCoords;
 	}
 
 	public String getLetter() {
@@ -98,6 +91,13 @@ public class Square {
 
 	public Integer getOptionalLetterSize() {
 		return optionalLetterSize;
+	}
+
+	@Override
+	public String toString() {
+		
+		String value = "[" + this.letter + (this.isOptionalLetter() ? ("/" + this.secondLetter) : "") + "]";
+		return value;
 	}
 	
 	

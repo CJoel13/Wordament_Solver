@@ -8,6 +8,29 @@ import model.Coord;
 public class ArrayListBehavior {
 
 	public static void main(String[] args) {
+		// Remove while iterating
+		List<String> list1 = new ArrayList<>();
+		list1.add("Hola");
+		list1.add("Munddo");
+		list1.add("Magia");
+		list1.add("ddia");
+		
+		System.out.println("Lista completa: " + list1);
+		
+		// java.util.ConcurrentModificationException
+//		for (String str : list1) {
+//			if (str.contains("dd")) {
+//				list1.remove(str);
+//			}
+//		}
+		
+		list1.removeIf(k -> k.contains("dd"));
+		
+		System.out.println("Despues de limpieza: " + list1);
+		
+	}
+	
+	private static void behavior2() {
 		Coord c1 = new Coord(0, 1);
 		Coord c2 = new Coord(0, 2);
 		Coord c3 = new Coord(0, 3);
@@ -38,7 +61,6 @@ public class ArrayListBehavior {
 		cs.remove(ds.get(0));
 		System.out.println("Finished:");
 		System.out.println(cs.toString());
-		
 	}
 	
 	private static void behavior1() {

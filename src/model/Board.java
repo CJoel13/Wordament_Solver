@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import java.util.Map;
 
 import actions.ReadInput;
 
@@ -16,7 +16,7 @@ public class Board {
 		return squares;
 	}
 	
-	public List<Coord> getNearbyCoords(Coord coord) {
+	public Map<String, Coord> getNearbyCoords(Coord coord) {
 		return squares[coord.getX()][coord.getY()].getNearbyCoords();
 	}
 	

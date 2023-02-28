@@ -7,11 +7,9 @@ public class Word {
 	
 	private String word;
 	private List<Coord> coordinates;
-	private Integer wordSize;
 	
 	public Word() {
 		coordinates = new ArrayList<>();
-		wordSize = 0;
 	}
 	
 	public Word(String word, List<Coord> coordinates) {
@@ -37,12 +35,19 @@ public class Word {
 		this.word = word;
 	}
 	public void setCoordinates(List<Coord> coordinates) {
-		this.coordinates = coordinates;
+		this.coordinates = new ArrayList<>(coordinates);
 	}
 	
 	public void setCoordinate(Coord coord) {
 		coordinates.add(coord);
 	}
+
+	@Override
+	public String toString() {
+		return word;
+	}
+	
+	
 	
 	
 

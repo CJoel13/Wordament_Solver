@@ -1,15 +1,15 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import constants.Constants;
 import model.Coord;
 
 public class NearCoordinatesGenerator {
 	
-	public List<Coord> generateCoords(int x, int y) {
-		List<Coord> nearby = new ArrayList<>();
+	public Map<String, Coord> generateCoords(int x, int y) {
+		Map<String, Coord> nearby = new HashMap<>();
 		
 		Coord minRange = getMinRange(x, y);
 		Coord maxRange = getMaxRange(x, y);
@@ -20,8 +20,10 @@ public class NearCoordinatesGenerator {
 		
 		for (int i = minx; i <= maxx; i++) {
 			for (int j = miny; j <= maxy; j++) {
-				if (!(i == x && j == y))
-					nearby.add(new Coord(i, j));
+				if (!(i == x && j == y)) {
+					Coord coord = new Coord(i,j);
+					nearby.put(coord.getCoordStr(), coord);
+				}
 			}
 		}
 		return nearby;

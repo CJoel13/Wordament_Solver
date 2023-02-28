@@ -1,58 +1,56 @@
 package actions;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import constants.Constants;
 import model.Board;
 import model.Coord;
 import model.Square;
 import model.Word;
+import utils.WordValidation;
 
 public class FindWords {
 	
 	private Map<String, Word> words;
 	private Board board;
+	private WordValidation wordValidation;
 	
 	public FindWords(Board board) {
 		words = new HashMap<>();
 		this.board = board;
+		this.wordValidation = WordValidation.getInstance();
 	}
 	
 	/**
-	 * Search posible words starting in current square
+	 * Search possible words starting in current square
 	 * @param currentSquare
 	 * @param board
 	 * @return
 	 */
 	public Map<String, Word> find(Square currentSquare) {
 		
-		Word word = new Word();
 		StringBuilder buildWord = new StringBuilder();
-		
-		/**
-		 * Se agrega primer coordenada y letra
-		 */
-		word.setCoordinate(currentSquare.getCoord());
 		buildWord.append(currentSquare.getLetter());
 		
-		/**
-		 * Iterar primer letra
-		 */
+		Word word = new Word();
+		word.setCoordinate(currentSquare.getCoord());
+		word.setWord(buildWord.toString());
 		
-		/**
-		 * Si primer letra tiene dos opciones
-		 */
+		findRecursive(word, buildWord);
+		
 		if (currentSquare.isOptionalLetter()) {
+			buildWord = new StringBuilder();
+			buildWord.append(currentSquare.getSecondLetter());
+			
 			word = new Word();
 			word.setCoordinate(currentSquare.getCoord());
-			buildWord = new StringBuilder();
-			buildWord.append(currentSquare.getLetter());
-			/**
-			 * Iterar segunda letra
-			 */
+			word.setWord(buildWord.toString());
+			
+			findRecursive(word, buildWord);
 		}
 		
 		return words;
@@ -65,26 +63,48 @@ public class FindWords {
 	 */
 	private boolean findRecursive(Word currentWord, StringBuilder buildWord) {
 		
-		if (buildWord.length() >= Constants.WORD_MIN_SIZE)
+		if (buildWord.length() >= 2 && !wordValidation.validateExistence(currentWord)) {
+			return false;
+		}
+		
+		
+		
+		if (buildWord.length() >= Constants.WORD_MIN_SIZE) {
+			if (!wordValidation.validateThree(currentWord))
+				return false;
 			words.put(buildWord.toString(), new Word(buildWord.toString(), currentWord.getCoordinates()));
+		}
+			
 		
 		if (buildWord.length() >= Constants.WORD_SIZE)
 			return true;
 		
-		/**
-		 * Get nearby coords
-		 */
 		List<Coord> nearbyCoords = getAvailableNearbyCoords(currentWord);
+		
 		for (Coord coord : nearbyCoords) {
 			Square nextSquare = board.getSquare(coord);
 			
-			Word newWord = new Word(buildWord.toString(), currentWord.getCoordinates());
-			StringBuilder newBuildWord = new StringBuilder(newWord.getWord());
-			
-			newWord.setCoordinate(nextSquare.getCoord());
+			StringBuilder newBuildWord = new StringBuilder(buildWord);
 			newBuildWord.append(nextSquare.getLetter());
 			
+			Word newWord = new Word();
+			newWord.setCoordinates(currentWord.getCoordinates());
+			newWord.setCoordinate(nextSquare.getCoord());
+			newWord.setWord(newBuildWord.toString());
+			
 			findRecursive(newWord, newBuildWord);
+			
+			if (nextSquare.isOptionalLetter()) {
+				newBuildWord = new StringBuilder(buildWord);
+				newBuildWord.append(nextSquare.getSecondLetter());
+				
+				newWord = new Word();
+				newWord.setCoordinates(currentWord.getCoordinates());
+				newWord.setCoordinate(nextSquare.getCoord());
+				newWord.setWord(newBuildWord.toString());
+				
+				findRecursive(newWord, newBuildWord);
+			}
 		}
 		
 		return true;
@@ -92,22 +112,14 @@ public class FindWords {
 	
 	private List<Coord> getAvailableNearbyCoords(Word currentWord) {
 		Coord coord = currentWord.getLastCoordinate();
-		List<Coord> nearbyCoords = board.getNearbyCoords(coord);
-		Map<String, Coord> map = new HashMap<>();
+		Map<String, Coord> nearbyCoords = new HashMap<>(board.getNearbyCoords(coord));
 		
-		/**
-		 * Clean nearby coords
-		 */
-		nearbyCoords.forEach(k -> {
-			
-		});
+		currentWord.getCoordinates().forEach(k -> nearbyCoords.remove(k.getCoordStr()));
 		
-		
-		List<Coord> availableNearbyCoords = null;
-		
-		
-		
-		return nearbyCoords;
+		Collection<Coord> collection = nearbyCoords.values();
+		return collection.stream().collect(Collectors.toList());
+//		return Arrays.asList(nearbyCoords.values());
+//		return (List<Coord>) nearbyCoords.values();
 	}
 
 }

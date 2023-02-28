@@ -11,14 +11,15 @@ public class ReadInput {
 	
 	private Scanner scanner;
 	private Square[][] squares;
-	private final String[] letra1 = {"A/Z", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"};
+//	private final String[] letra1 = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"};
+	private final String[] letra1 = {"I", "T", "V", "I", "A", "C", "R", "A", "Y/U", "D", "B", "S", "D", "O", "T", "O"};
 	
 	public ReadInput() {
 		scanner = new Scanner(System.in);
 		squares = new Square[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
 	}
 	
-	public Square[][] readInput() {
+	public Square[][] readInputMock() {
 		for (int i = 0; i < squares.length; i++) {
 			for (int j = 0; j < squares[i].length; j++) {
 				System.out.print("Enter letter: ");
@@ -30,7 +31,7 @@ public class ReadInput {
 		return squares;
 	}
 	
-	public void readInputMock() {
+	public Square[][] readInput() {
 		int w = 0;
 		for (int i = 0; i < squares.length; i++) {
 			for (int j = 0; j < squares[i].length; j++) {
@@ -40,8 +41,7 @@ public class ReadInput {
 			}
 		}
 		printInput();
-		System.out.println();
-		printNearCoords();
+		return squares;
 	}
 	
 	private void printInput() {
@@ -61,7 +61,7 @@ public class ReadInput {
 				System.out.print("Coordinate: ");
 				printCoord(squares[i][j].getCoord());
 				System.out.println("Near coords: ");
-				printCoords(squares[i][j].getNearbyCoords());
+				printCoords((List<Coord>) squares[i][j].getNearbyCoords().values());
 			}
 			System.out.println();
 		}
