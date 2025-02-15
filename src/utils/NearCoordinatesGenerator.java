@@ -6,9 +6,18 @@ import java.util.Map;
 import constants.Constants;
 import model.Coord;
 
+/**
+ * For a given coordinate, generateCoords method retrieves a Map with the surrounding coordinates.
+ * TODO: Coordinates are created, is it necessary?
+ * TODO: Should a reference of an already created Coord should be used instead?
+ * TODO: Where is this used?
+ * TODO: Why a Map<String, Coord> is used?
+ * @author joel1
+ *
+ */
 public class NearCoordinatesGenerator {
 	
-	public Map<String, Coord> generateCoords(int x, int y) {
+	public static Map<String, Coord> generateCoords(int x, int y) {
 		Map<String, Coord> nearby = new HashMap<>();
 		
 		Coord minRange = getMinRange(x, y);
@@ -29,13 +38,45 @@ public class NearCoordinatesGenerator {
 		return nearby;
 	}
 	
-	private Coord getMinRange(int x, int y) {
+	/**
+	 * Retrieves the minimal nearby coordinate to set for a range.
+	 * 
+	 * Example: 
+	 * * For Coord [1,1] "x"
+	 * * Result: "N" [0,0]
+	 * 
+	 * [N] [ ] [ ]
+	 * [ ] [x] [ ]
+	 * [ ] [ ] [ ]
+	 * 
+	 * 
+	 * @param x Position in x
+	 * @param y Position in x
+	 * @return The minimal nearby coordinate to set for a range.
+	 */
+	private static Coord getMinRange(int x, int y) {
 		int minx = x == 0 ? 0 : x - 1;
 		int miny = y == 0 ? 0 : y - 1;
 		return new Coord(minx, miny);
 	}
 	
-	private Coord getMaxRange(int x, int y) {
+	/**
+     * Retrieves the maximum nearby coordinate to set for a range.
+     * 
+     * Example: 
+     * * For Coord [1,1] "x"
+     * * Result: "N" [2,2]
+     * 
+     * [ ] [ ] [ ]
+     * [ ] [x] [ ]
+     * [ ] [ ] [N]
+     * 
+     * 
+     * @param x Position in x
+     * @param y Position in x
+     * @return The maximum nearby coordinate to set for a range.
+     */
+	private static Coord getMaxRange(int x, int y) {
 		int maxx = x == Constants.BOARD_SIZE - 1 ? Constants.BOARD_SIZE - 1 : x + 1;
 		int maxy = y == Constants.BOARD_SIZE - 1 ? Constants.BOARD_SIZE - 1 : y + 1;
 		return new Coord(maxx, maxy);

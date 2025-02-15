@@ -1,6 +1,8 @@
 package process;
 
+import actions.GenerateSquares;
 import model.Board;
+import model.Square;
 
 /**
  * Class that orchestrates call to create initial state of board.
@@ -12,8 +14,12 @@ public class Initialize {
 	private IterateBoard iterateBoard;
 	
 	public Initialize() {
-		Board board = new Board();
-		iterateBoard = new IterateBoard(board);
+	  
+	  Square[][] squares = GenerateSquares.generateSquares();
+	  // TODO: Initialize should be moved to "Solver"
+	  
+	  Board board = new Board(squares);
+	  iterateBoard = new IterateBoard(board);
 	}
 	
 	public void init() {

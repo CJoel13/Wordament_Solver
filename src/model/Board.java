@@ -2,14 +2,12 @@ package model;
 
 import java.util.Map;
 
-import actions.ReadInput;
-
 public class Board {
 	
 	private Square[][] squares;
 	
-	public Board() {
-		this.squares = new ReadInput().readInput();
+	public Board(Square[][] squares) {
+	  this.squares = squares;
 	}
 
 	public Square[][] getSquares() {

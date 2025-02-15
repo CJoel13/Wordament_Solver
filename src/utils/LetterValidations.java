@@ -8,7 +8,7 @@ public class LetterValidations {
 	 * @param letter User's input letter 
 	 * @return the result of validation
 	 */
-	public boolean validateRealLetter(String letter) {
+	public static boolean validateRealLetter(String letter) {
 		if (letter.length() > 2)
 			throw new IllegalArgumentException("Invalid size of letter");
 		
@@ -25,7 +25,7 @@ public class LetterValidations {
 	 * @param singleLetter
 	 * @return
 	 */
-	private boolean validateAscii(char singleLetter) {
+	private static boolean validateAscii(char singleLetter) {
 		if (singleLetter >= 65 && singleLetter <= 90) {
 			return true;
 		} else {

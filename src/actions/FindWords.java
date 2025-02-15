@@ -112,6 +112,7 @@ public class FindWords {
 	
 	private List<Coord> getAvailableNearbyCoords(Word currentWord) {
 		Coord coord = currentWord.getLastCoordinate();
+		// TODO: Is it necessary to create Coord?, since where is it used?
 		Map<String, Coord> nearbyCoords = new HashMap<>(board.getNearbyCoords(coord));
 		
 		currentWord.getCoordinates().forEach(k -> nearbyCoords.remove(k.getCoordStr()));

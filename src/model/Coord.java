@@ -1,9 +1,17 @@
 package model;
 
+/**
+ * Coordinate structure to identify position of a {@link Square} within a {@link Board}.
+ * @author joel1
+ *
+ */
 public class Coord {
 	
 	private int x;
 	private int y;
+	/**
+	 * TODO: Define what is this & why is necessary?
+	 */
 	private String coordStr;
 	
 	public Coord(int x, int y) {

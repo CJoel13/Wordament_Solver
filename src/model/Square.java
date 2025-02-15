@@ -17,20 +17,14 @@ public class Square {
 	private Integer letterSize;
 	private Integer optionalLetterSize;
 	
-	private LetterValidations letterValidations;
-	private NearCoordinatesGenerator coordGenerator;
-	
 	public Square(String letter, int x, int y) {
-		this.letterValidations = new LetterValidations();
-		this.coordGenerator = new NearCoordinatesGenerator();
 		this.coord = new Coord(x, y);
-		
 		setLetter(letter);
 		setNearbyCoords(x, y);
 	}
 	
 	private void setNearbyCoords(int x, int y) {
-		nearbyCoords = coordGenerator.generateCoords(x, y);
+		nearbyCoords = NearCoordinatesGenerator.generateCoords(x, y);
 	}
 	
 	private void setLetter(String letter) {
@@ -40,7 +34,7 @@ public class Square {
 		letter = letter.toUpperCase();
 		
 		if (!letter.contains(Constants.SEPARATOR_CHARACTER)) {
-			if (letterValidations.validateRealLetter(letter)) {
+			if (LetterValidations.validateRealLetter(letter)) {
 				this.letter = letter;
 				this.letterSize = letter.length();
 			}
@@ -49,13 +43,11 @@ public class Square {
 			if (optionals.length != 2 || optionals[0].isEmpty())
 				throw new IllegalArgumentException("Optionals are invalid");
 			
-			letterValidations.validateRealLetter(optionals[0]);
-			letterValidations.validateRealLetter(optionals[1]);
+			LetterValidations.validateRealLetter(optionals[0]);
+			LetterValidations.validateRealLetter(optionals[1]);
 			
 			this.letter = optionals[0];
 			this.secondLetter = optionals[1];
-			
-			
 			
 			this.letterSize = optionals[0].length();
 			this.optionalLetterSize = optionals[1].length();
@@ -100,7 +92,4 @@ public class Square {
 		return value;
 	}
 	
-	
-	
-
 }
