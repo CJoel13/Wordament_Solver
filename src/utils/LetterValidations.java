@@ -9,15 +9,15 @@ public class LetterValidations {
 	 * @return the result of validation
 	 */
 	public static boolean validateRealLetter(String letter) {
-		if (letter.length() > 2)
-			throw new IllegalArgumentException("Invalid size of letter");
-		
-		validateAscii(letter.charAt(0));
-		
-		if (letter.length() == 2)
-			validateAscii(letter.charAt(1));
-		
-		return true;
+	   if (letter.length() > 2)
+           throw new IllegalArgumentException("Invalid size of letter");
+       
+       validateAscii(letter.charAt(0));
+       
+       if (letter.length() == 2)
+           validateAscii(letter.charAt(1));
+       
+       return true;
 	}
 	
 	/**

@@ -41,7 +41,6 @@ public class Square {
 			String[] optionals = letter.split(Constants.SEPARATOR_CHARACTER);
 			if (optionals.length != 2 || optionals[0].isEmpty())
 				throw new IllegalArgumentException("Optionals are invalid");
-			
 			LetterValidations.validateRealLetter(optionals[0]);
 			LetterValidations.validateRealLetter(optionals[1]);
 			

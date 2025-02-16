@@ -17,30 +17,6 @@ import model.Coord;
  *
  */
 public class NearCoordinatesGenerator {
-
-  /*
-   * TODO: Deprecate
-   */
-  public static Map<String, Coord> generateCoords(int x, int y) {
-    Map<String, Coord> nearby = new HashMap<>();
-
-    Coord minRange = getMinRange(x, y);
-    Coord maxRange = getMaxRange(x, y);
-    int minx = minRange.getX();
-    int miny = minRange.getY();
-    int maxx = maxRange.getX();
-    int maxy = maxRange.getY();
-
-    for (int i = minx; i <= maxx; i++) {
-      for (int j = miny; j <= maxy; j++) {
-        if (!(i == x && j == y)) {
-          Coord coord = new Coord(i, j);
-          nearby.put(coord.getCoordStr(), coord);
-        }
-      }
-    }
-    return nearby;
-  }
   
   public static List<Coord> generateCoordsList(int x, int y) {
     List<Coord> nearby = new ArrayList<>();
