@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Map;
+import java.util.List;
 
 public class Board {
 	
@@ -14,8 +14,8 @@ public class Board {
 		return squares;
 	}
 	
-	public Map<String, Coord> getNearbyCoords(Coord coord) {
-		return squares[coord.getX()][coord.getY()].getNearbyCoords();
+	public List<Coord> getNearbyCoordsList(Coord coord) {
+	  return squares[coord.getX()][coord.getY()].getNearbyCoordsList();
 	}
 	
 	public Square getSquare(Coord coord) {

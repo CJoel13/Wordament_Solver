@@ -89,7 +89,7 @@ public class IterateBoard {
 		System.out.println("Words with 2: " + two.size());
 		
 		System.out.println("\n\n-----");
-		for (int i = 0; i < 200; i++) {
+		for (int i = 0; i < 187; i++) {
 			System.out.println(six.get(i));
 		}
 		

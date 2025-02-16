@@ -1,5 +1,7 @@
 package model;
 
+import actions.FindWords;
+
 /**
  * Coordinate structure to identify position of a {@link Square} within a {@link Board}.
  * @author joel1
@@ -10,7 +12,8 @@ public class Coord {
 	private int x;
 	private int y;
 	/**
-	 * TODO: Define what is this & why is necessary?
+	 * Used in {@link FindWords} getAvailableNearbyCoords
+	 * When identifying next possible coordinates, is necessary to discard the ones already used.
 	 */
 	private String coordStr;
 	

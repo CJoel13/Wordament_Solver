@@ -6,6 +6,9 @@ import java.util.List;
 public class Word {
 	
 	private String word;
+	/**
+	 * Necessary to keep order in which word must be executed.
+	 */
 	private List<Coord> coordinates;
 	
 	public Word() {
@@ -46,9 +49,5 @@ public class Word {
 	public String toString() {
 		return word;
 	}
-	
-	
-	
-	
 
 }

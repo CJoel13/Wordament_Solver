@@ -61,7 +61,7 @@ public class ReadInput {
 				System.out.print("Coordinate: ");
 				printCoord(squares[i][j].getCoord());
 				System.out.println("Near coords: ");
-				printCoords((List<Coord>) squares[i][j].getNearbyCoords().values());
+				printCoords(squares[i][j].getNearbyCoordsList());
 			}
 			System.out.println();
 		}

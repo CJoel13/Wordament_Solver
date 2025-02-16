@@ -1,7 +1,6 @@
 package model;
 
-import java.util.Map;
-
+import java.util.List;
 import constants.Constants;
 import utils.LetterValidations;
 import utils.NearCoordinatesGenerator;
@@ -9,7 +8,7 @@ import utils.NearCoordinatesGenerator;
 public class Square {
 	
 	private Coord coord;
-	private Map<String, Coord> nearbyCoords;
+	private List<Coord> nearbyCoordsList;
 	
 	private String letter;
 	private boolean optionalLetter;
@@ -20,11 +19,11 @@ public class Square {
 	public Square(String letter, int x, int y) {
 		this.coord = new Coord(x, y);
 		setLetter(letter);
-		setNearbyCoords(x, y);
+		setNearbyCoordsList(x, y);
 	}
 	
-	private void setNearbyCoords(int x, int y) {
-		nearbyCoords = NearCoordinatesGenerator.generateCoords(x, y);
+	private void setNearbyCoordsList(int x, int y) {
+	  nearbyCoordsList  = NearCoordinatesGenerator.generateCoordsList(x, y);
 	}
 	
 	private void setLetter(String letter) {
@@ -60,9 +59,9 @@ public class Square {
 	public Coord getCoord() {
 		return coord;
 	}
-
-	public Map<String, Coord> getNearbyCoords() {
-		return nearbyCoords;
+	
+	public List<Coord> getNearbyCoordsList() {
+	  return nearbyCoordsList;
 	}
 
 	public String getLetter() {
