@@ -28,21 +28,7 @@ public class IterateBoard {
 		this.board = board;
 		findWords = new FindWords(board);
 		validations = WordValidation.getInstance();
-		
-		letterSet = new HashSet<>();
-		letterSet.add('B');
-		letterSet.add('D');
-		letterSet.add('F');
-		letterSet.add('G');
-		letterSet.add('I');
-		letterSet.add('M');
-		letterSet.add('N');
-		letterSet.add('P');
-		letterSet.add('S');
-		letterSet.add('T');
-		letterSet.add('U');
-		letterSet.add('Z');
-		
+		letterSet = WordProvider.validDuplicateLetterSet();
 		coupleLetterSet = WordProvider.coupleLettersProvider();
 		
 	}
@@ -105,7 +91,10 @@ public class IterateBoard {
 		Set<String> toDelete = new HashSet<>();
 		String repeated = "" + letter + letter;
 		
-		Set<String> setToDelete = foundWords.keySet().stream().filter(k -> k.contains(repeated)).filter(m -> !validations.validateDuplicate(m, letter)).collect(Collectors.toSet());
+		Set<String> setToDelete = foundWords.keySet().stream()
+		    .filter(k -> k.contains(repeated))
+		    .filter(m -> !validations.validateDuplicate(m, letter))
+		    .collect(Collectors.toSet());
 		toDelete.addAll(setToDelete);
 		
 		toDelete.forEach(k -> foundWords.remove(k));
@@ -114,7 +103,10 @@ public class IterateBoard {
 	private void removeInvalidCoupleWords(Map<String, Word> foundWords, String couple) {
 		Set<String> toDelete = new HashSet<>();
 		
-		Set<String> setToDelete = foundWords.keySet().stream().filter(k -> k.contains(couple)).filter(m -> !validations.validateCoupleWord(m, couple)).collect(Collectors.toSet());
+		Set<String> setToDelete = foundWords.keySet().stream()
+		    .filter(k -> k.contains(couple))
+		    .filter(m -> !validations.validateCoupleWord(m, couple))
+		    .collect(Collectors.toSet());
 		toDelete.addAll(setToDelete);
 		
 		toDelete.forEach(k -> foundWords.remove(k));

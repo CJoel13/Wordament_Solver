@@ -1,5 +1,6 @@
 package actions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +120,7 @@ public class FindWords {
    */
   private List<Coord> getAvailableNearbyCoords(Word currentWord) {
     Coord coord = currentWord.getLastCoordinate();
-    List<Coord> nearbyCoordsList = board.getNearbyCoordsList(coord);
+    List<Coord> nearbyCoordsList = new ArrayList<>(board.getNearbyCoordsList(coord));
     currentWord.getCoordinates()
         .forEach(k -> nearbyCoordsList.removeIf(n -> n.getCoordStr().equals(k.getCoordStr())));
     return nearbyCoordsList;

@@ -123,6 +123,25 @@ public class WordProvider {
 
 		return validDoubleWords;
 	}
+	
+	public static Set<Character> validDuplicateLetterSet() {
+	  Set<Character >letterSet = new HashSet<>();
+	  letterSet.add('B');
+	  letterSet.add('D');
+	  letterSet.add('F');
+	  letterSet.add('G');
+	  letterSet.add('I');
+	  letterSet.add('M');
+	  letterSet.add('N');
+	  letterSet.add('P');
+	  letterSet.add('S');
+	  letterSet.add('T');
+	  letterSet.add('U');
+	  letterSet.add('Z');
+	  
+	  return letterSet;
+	}
+	
 
 	public static Map<String, List<String>> validRareWordProvider() {
 		List<String> waWords = Arrays.asList("HARDWARE", "HAWAIANO", "HAWAIANOS", "HAWAIANA", "HAWAIANAS", "KUWAITI",
