@@ -9,9 +9,9 @@ import constants.Constants;
 import model.Coord;
 
 /**
- * For a given coordinate, generateCoords method retrieves a Map with the surrounding coordinates.
- * TODO: Coordinates are created, is it necessary? TODO: Should a reference of an already created
- * Coord should be used instead? TODO: Where is this used? TODO: Why a Map<String, Coord> is used?
+ * For a given coordinate, generateCoordsLsit method retrieves a List 
+ * with the surrounding coordinates.
+ * 
  * 
  * @author joel1
  *

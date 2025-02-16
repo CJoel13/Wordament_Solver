@@ -1,13 +1,38 @@
 package constants;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class WordProvider {
+  
+  public static final Set<String> dictionary;
+  
+  static {
+    dictionary = new HashSet<>();
+    
+    Scanner scanner;
+    try {
+      scanner = new Scanner(new File("src/utils/listado-general.txt"));
+//      scanner = new Scanner(new File("src/utils/red_txt.txt"));
+      scanner.useDelimiter(Pattern.compile("[\\r\\n;]+"));
+      
+      while (scanner.hasNext()) {
+        String str = scanner.next();
+        dictionary.add(str);
+      }
+      
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
 
 	public static Map<Character, List<Character>> invalidLettersProvider() {
 		Map<Character, List<Character>> invalidLetters = new HashMap<>();

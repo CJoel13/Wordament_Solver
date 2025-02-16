@@ -18,6 +18,8 @@ public class WordValidation {
 		invalidLetters = WordProvider.invalidLettersProvider();
 		validDoubleWords = WordProvider.validDoubleWordProvider();
 		validWords = WordProvider.validRareWordProvider();
+		// TODO: Consider plural validation in case DB doesn't contain them.
+		
 	}
 	
 	public static WordValidation getInstance() {

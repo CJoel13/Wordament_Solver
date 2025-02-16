@@ -1,6 +1,8 @@
 package process;
 
 import actions.GenerateSquares;
+import actions.ReadInput;
+import constants.WordProvider;
 import model.Board;
 import model.Square;
 
@@ -18,14 +20,15 @@ public class Initialize {
 	 * Get input from CLI: new ReadInput().readInput();
 	 */
 	public Initialize() {
-	  Square[][] squares = GenerateSquares.generateSquares();
+//	  Square[][] squares = GenerateSquares.generateSquares();
+	  
+	  Square[][] squares = new ReadInput().readInputMock();
 	  Board board = new Board(squares);
 	  iterateBoard = new IterateBoard(board);
 	}
 	
 	public void init() {
 		iterateBoard.iterate();
-	
 	}
 	
 	public static void main(String[] args) {
